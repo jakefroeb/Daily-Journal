@@ -12,6 +12,8 @@ eventHub.addEventListener("click", clickEvent => {
         // Make a new object representation of a note
         if(document.querySelector("#journalConcepts").value.length > 10){
             window.alert("Concept too long")
+        }else if(badWords(document.querySelector("#journalConcepts").value)){
+            window.alert("POTTY MOUTH")
         }else{
         const newJournalEntry = {
             date : document.querySelector("#journalDate").value,
@@ -26,6 +28,11 @@ eventHub.addEventListener("click", clickEvent => {
         // Change API state and application state
     }
 })
+
+const badWords = (words) => {
+    const re = /badword/
+    return re.test(words)
+}
 
 
 const render = () => {
