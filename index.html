@@ -11,26 +11,9 @@
             <img src="" alt="logo" class="headerImg">
             <p class="headerText">Jake Froeb</p>
         </header>
-        <main id="container">
-            <form action="">
-                <fieldset class="inputForm">
-                    <label for="journalDate">Date of entry</label>
-                    <input type="date" name="journalDate" id="journalDate">
-                    <label for="journalConcepts">Concepts Covered</label>
-                    <input type="text" name="journalConcepts" id="journalConcepts">
-                    <textarea name="journalText" id="journalText" rows="10" cols="30">Record Journal entry here
-                    </textarea>
-                    <label for="journalMood">Mood</label>
-                    <select id="journalMood" name="journalMood">
-                        <option value="happy">Happy</option>
-                        <option value="sad">Sad</option>
-                        <option value="mad">Mad</option>
-                        <option value="frustrated">Frustrated</option>
-                    </select>
-                    <input type="button" onclick="alert('make me do something')" value="Record Journal Entry">
-                </fieldset>             
-            </form>
-            <section id="entryLog"></section>
+        <main class="container">
+            <div class="journalEntryForm"></div>
+            <section class="entryLog"></section>
         </main>
 
 
