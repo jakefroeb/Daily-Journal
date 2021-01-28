@@ -1,0 +1,67 @@
+{
+  "entries": [
+    {
+      "id": 1,
+      "date": "07/24/2025",
+      "concept": "HTML & CSS",
+      "entry": "We talked about HTML components and how to make grid layouts with Flexbox in CSS.",
+      "mood": "Happy"
+    },
+    {
+      "id": 2,
+      "date": "07/26/2025",
+      "concept": "Complex Flexbox",
+      "entry": "I tried to have an element in my Flexbox layout also be another Flexbox layout. It hurt my brain. I hate Steve.",
+      "mood": "Sad"
+    },
+    {
+      "id": 3,
+      "date": "07/27/2025",
+      "concept": "Intro to JavaScript",
+      "entry": "Had some serious problems reading the code i was asked to copy and paste in the instructions, but with some trial and error and help from the internet i was able to understand it.",
+      "mood": "Frustrated"
+    },
+    {
+      "date": "2021-01-15",
+      "concept": "API",
+      "entry": "Such a fun time learning fetch and post requests",
+      "mood": "happy",
+      "id": 4
+    },
+    {
+      "date": "2021-01-30",
+      "concept": "Learning to sit under a tree",
+      "entry": "sitting under trees is the best",
+      "mood": "happy",
+      "id": 5
+    },
+    {
+      "date": "2021-01-28",
+      "concept": "stuff and things",
+      "entry": "trying to convert my code to html\n                    ",
+      "mood": "happy",
+      "id": 6
+    },
+    {
+      "date": "2021-01-30",
+      "concept": "some more things in here",
+      "entry": "when i render to the dom it is not replacing old entries",
+      "mood": "happy",
+      "id": 7
+    },
+    {
+      "date": "2021-01-15",
+      "concept": "ANOTHER TEST!!!!!",
+      "entry": "ARGGGG",
+      "mood": "happy",
+      "id": 8
+    },
+    {
+      "date": "2021-01-22",
+      "concept": "FINAL TEST",
+      "entry": "Hopefully this works",
+      "mood": "happy",
+      "id": 9
+    }
+  ]
+}
