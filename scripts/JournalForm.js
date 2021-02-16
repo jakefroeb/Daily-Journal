@@ -1,6 +1,7 @@
-import { saveJournalEntry } from "./JournalDataProvider.js";
+import { saveJournalEntry, deleteEntry } from "./JournalDataProvider.js";
 
 import { EntryListComponent } from "./JournalEntryList.js";
+import { useMoods } from "./MoodsProvider.js";
 
 const contentTarget = document.querySelector(".journalEntryForm")
 const eventHub = document.querySelector(".container")
@@ -19,13 +20,23 @@ eventHub.addEventListener("click", clickEvent => {
             date : document.querySelector("#journalDate").value,
             concept : document.querySelector("#journalConcepts").value,
             entry : document.querySelector("#journalText").value,
-            mood : document.querySelector("#journalMood").value
+            moodId : document.querySelector("#journalMood").value
             // Key/value pairs here
         }
         saveJournalEntry(newJournalEntry)
         EntryListComponent()
     }
         // Change API state and application state
+    }
+})
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id.startsWith("deleteNote--")) {
+        const [prefix, id] = clickEvent.target.id.split("--")
+        deleteEntry(id).then(
+           () => {
+               EntryListComponent()
+           }
+       )
     }
 })
 
@@ -35,7 +46,7 @@ const badWords = (words) => {
 }
 
 
-const render = () => {
+const render = (allMoods) => {
     contentTarget.innerHTML = `
     <form action="">
                 <fieldset class="inputForm">
@@ -47,10 +58,13 @@ const render = () => {
                     </textarea>
                     <label for="journalMood">Mood</label>
                     <select id="journalMood" name="journalMood">
-                        <option value="happy">Happy</option>
-                        <option value="sad">Sad</option>
-                        <option value="mad">Mad</option>
-                        <option value="frustrated">Frustrated</option>
+                    ${
+                        allMoods.map(
+                            (mood) => {
+                                return `<option value="${ mood.id }">${ mood.label }</option>`
+                            }
+                        ).join("")
+                    }
                     </select>
                     <input type="button" id="saveJournalEntry" value="Record Journal Entry">
                 </fieldset>             
@@ -58,6 +72,6 @@ const render = () => {
     `
 }
 
-export const JournalForm = () => {
-    render()
+export const JournalForm = (moods) => {
+    render(moods)
 }
