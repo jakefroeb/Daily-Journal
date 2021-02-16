@@ -20,7 +20,7 @@ const dispatchStateChangeEvent = () => {
     eventHub.dispatchEvent(journalEntriesStateChangedEvent)
 }
 export const getJournalEntries = async () => {
-    const response = await fetch("http://localhost:8088/entries")
+    const response = await fetch("http://localhost:8088/entries?_expand=mood")
     const parsedEntries = await response.json()
     journal = parsedEntries
     console.log(journal)
@@ -43,4 +43,10 @@ export const useJournalEntries = () => {
             Date.parse(currentEntry.date) - Date.parse(nextEntry.date)
     )
     return sortedByDate
+}
+export const deleteEntry = entryId => {
+    return fetch(`http://localhost:8088/entries/${entryId}`, {
+        method: "DELETE"
+    })
+        .then(getJournalEntries)
 }
