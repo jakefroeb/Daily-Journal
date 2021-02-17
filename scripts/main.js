@@ -5,9 +5,13 @@ import { EntryListComponent } from "./JournalEntryList.js"
 import { JournalForm } from "./JournalForm.js";
 import { getMoods, useMoods } from "./MoodsProvider.js";
 import { FilterBar} from "./FilterBar.js"
+import { getTags, saveTag } from "./TagProvider.js";
+import { getEntryTags } from "./EntryTagProvider.js";
 
 EntryListComponent();
-getMoods().then(() =>{
+getEntryTags().then(getTags).then(getMoods).then(() =>{
     JournalForm(useMoods())
     FilterBar()
     })
+let tag = {subject : "test"}
+console.log(saveTag(tag))
