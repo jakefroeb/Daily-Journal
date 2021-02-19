@@ -13,5 +13,3 @@ getEntryTags().then(getTags).then(getMoods).then(() =>{
     JournalForm(useMoods())
     FilterBar()
     })
-let tag = {subject : "test"}
-console.log(saveTag(tag))

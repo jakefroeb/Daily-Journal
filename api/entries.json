@@ -73,6 +73,90 @@
       "entry": "Record Journal entry here\n         asd           ",
       "moodId": "1",
       "id": 10
+    },
+    {
+      "date": "2021-02-12",
+      "concept": "TAGS",
+      "entry": "Record Journal entry here\n                 I really hope this works   ",
+      "moodId": "1",
+      "id": 11
+    },
+    {
+      "date": "2021-02-04",
+      "concept": "tag",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 12
+    },
+    {
+      "date": "2021-02-13",
+      "concept": "tag",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 13
+    },
+    {
+      "date": "2021-02-13",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 14
+    },
+    {
+      "date": "2021-02-12",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 15
+    },
+    {
+      "date": "2021-02-19",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 16
+    },
+    {
+      "date": "2021-02-19",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 17
+    },
+    {
+      "date": "2021-02-17",
+      "concept": "tag",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 18
+    },
+    {
+      "date": "2021-02-12",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 19
+    },
+    {
+      "date": "2021-02-12",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 20
+    },
+    {
+      "date": "2021-02-04",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 21
+    },
+    {
+      "date": "2021-02-04",
+      "concept": "tags",
+      "entry": "Record Journal entry here\n                    ",
+      "moodId": "1",
+      "id": 22
     }
   ],
   "tags": [
@@ -91,34 +175,6 @@
     {
       "subject": "test",
       "id": 4
-    },
-    {
-      "subject": "test",
-      "id": 5
-    },
-    {
-      "subject": "test",
-      "id": 6
-    },
-    {
-      "subject": "test",
-      "id": 7
-    },
-    {
-      "subject": "test",
-      "id": 8
-    },
-    {
-      "subject": "test",
-      "id": 9
-    },
-    {
-      "subject": "test",
-      "id": 10
-    },
-    {
-      "subject": "test",
-      "id": 11
     }
   ],
   "entrytags": [
@@ -133,14 +189,29 @@
       "tagId": 3
     },
     {
-      "id": 2,
+      "id": 3,
       "entryId": 9,
       "tagId": 1
     },
     {
-      "id": 2,
+      "id": 4,
       "entryId": 9,
       "tagId": 2
+    },
+    {
+      "tagId": 1,
+      "journalId": 22,
+      "id": 5
+    },
+    {
+      "tagId": 3,
+      "journalId": 22,
+      "id": 6
+    },
+    {
+      "tagId": 3,
+      "journalId": 22,
+      "id": 7
     }
   ]
 }

@@ -3,7 +3,7 @@ import { saveJournalEntry, deleteEntry } from "./JournalDataProvider.js";
 
 import { EntryListComponent } from "./JournalEntryList.js";
 import { useMoods } from "./MoodsProvider.js";
-import { saveTag, useTags } from "./TagProvider.js";
+import { getTags, saveTag, useTags } from "./TagProvider.js";
 
 const contentTarget = document.querySelector(".journalEntryForm")
 const eventHub = document.querySelector(".container")
@@ -26,15 +26,40 @@ eventHub.addEventListener("click", clickEvent => {
                 moodId : document.querySelector("#journalMood").value
                 // Key/value pairs here
             }
-        saveJournalEntry(newJournalEntry)
-            for (const tag of inputTags) {
-                if(useTags().find(tt => tt.subject !== tag)){
-                    saveTag(tag).then(entryTag => {
+        
+            let journalId
+            let tagId
+            let entryTag
+            let inputTagObj
+        saveJournalEntry(newJournalEntry).then((entry) => {
+            journalId = entry.id}).then(getTags).then((tags) =>{
+                debugger 
+                for (const inputTag of inputTags) {
+                    let foundTag = tags.find(tag => tag.subject === inputTag)
+                    if(foundTag){
+                        tagId = foundTag.id
+                        entryTag = {
+                            tagId : tagId,
+                            journalId : journalId
+                        }
                         saveEntryTag(entryTag)
-                    })
+                    }else{
+                        inputTagObj = {
+                            subject : inputTag
+                        }
+                        saveTag(inputTagObj).then((tag) => {
+                            entryTag = {
+                                tagId : tag.id,
+                                journalId : journalId
+                            }
+                        }).then(saveEntryTag(entryTag))
+                    }
                 }
-                                                        
-            }
+            })
+        
+        
+                
+            
         EntryListComponent()
     }
         // Change API state and application state

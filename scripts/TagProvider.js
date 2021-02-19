@@ -9,14 +9,15 @@ export const getTags = async () => {
 }
 
 export const saveTag = async tag => {
-    const result = await fetch('http://localhost:8088/tags', {
+    const result = await fetch("http://localhost:8088/tags", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(tag)
     })
-    console.log(result)
+    const response = await result.json()
+    console.log(response)
     
-    return result
+    return response
 }
