@@ -1,7 +1,9 @@
+import { saveEntryTag } from "./EntryTagProvider.js";
 import { saveJournalEntry, deleteEntry } from "./JournalDataProvider.js";
 
 import { EntryListComponent } from "./JournalEntryList.js";
 import { useMoods } from "./MoodsProvider.js";
+import { getTags, saveTag, useTags } from "./TagProvider.js";
 
 const contentTarget = document.querySelector(".journalEntryForm")
 const eventHub = document.querySelector(".container")
@@ -9,6 +11,7 @@ const eventHub = document.querySelector(".container")
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "saveJournalEntry") {
         clickEvent.preventDefault();
+        let inputTags = document.querySelector("#journalTags").value.split(',')
         
         // Make a new object representation of a note
         if(document.querySelector("#journalConcepts").value.length > 10){
@@ -16,14 +19,47 @@ eventHub.addEventListener("click", clickEvent => {
         }else if(badWords(document.querySelector("#journalConcepts").value)){
             window.alert("POTTY MOUTH")
         }else{
-        const newJournalEntry = {
-            date : document.querySelector("#journalDate").value,
-            concept : document.querySelector("#journalConcepts").value,
-            entry : document.querySelector("#journalText").value,
-            moodId : document.querySelector("#journalMood").value
-            // Key/value pairs here
-        }
-        saveJournalEntry(newJournalEntry)
+            const newJournalEntry = {
+                date : document.querySelector("#journalDate").value,
+                concept : document.querySelector("#journalConcepts").value,
+                entry : document.querySelector("#journalText").value,
+                moodId : document.querySelector("#journalMood").value
+                // Key/value pairs here
+            }
+        
+            let journalId
+            let tagId
+            let entryTag
+            let inputTagObj
+        saveJournalEntry(newJournalEntry).then((entry) => {
+            journalId = entry.id}).then(getTags).then((tags) =>{
+                debugger 
+                for (const inputTag of inputTags) {
+                    let foundTag = tags.find(tag => tag.subject === inputTag)
+                    if(foundTag){
+                        tagId = foundTag.id
+                        entryTag = {
+                            tagId : tagId,
+                            journalId : journalId
+                        }
+                        saveEntryTag(entryTag)
+                    }else{
+                        inputTagObj = {
+                            subject : inputTag
+                        }
+                        saveTag(inputTagObj).then((tag) => {
+                            entryTag = {
+                                tagId : tag.id,
+                                journalId : journalId
+                            }
+                        }).then(saveEntryTag(entryTag))
+                    }
+                }
+            })
+        
+        
+                
+            
         EntryListComponent()
     }
         // Change API state and application state
@@ -54,6 +90,8 @@ const render = (allMoods) => {
                     <input type="date" name="journalDate" id="journalDate">
                     <label for="journalConcepts">Concepts Covered</label>
                     <input type="text" name="journalConcepts" id="journalConcepts">
+                    <label for="journalTags">Tags</label>
+                    <input type="text" name="journalTags" id="journalTags">
                     <textarea name="journalText" id="journalText" rows="10" cols="30">Record Journal entry here
                     </textarea>
                     <label for="journalMood">Mood</label>

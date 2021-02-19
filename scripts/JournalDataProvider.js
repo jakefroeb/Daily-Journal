@@ -33,8 +33,8 @@ export const saveJournalEntry = async entry => {
         },
         body: JSON.stringify(entry)
     })
-    const result_1 = await getJournalEntries(result)
-    return dispatchStateChangeEvent(result_1)
+    const response = await result.json()
+    return response
 }
 
 export const useJournalEntries = () => {
