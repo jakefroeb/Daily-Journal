@@ -17,7 +17,5 @@ export const saveTag = async tag => {
         body: JSON.stringify(tag)
     })
     const response = await result.json()
-    console.log(response)
-    
     return response
 }
