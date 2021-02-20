@@ -1,9 +1,7 @@
-import { saveEntryTag } from "./EntryTagProvider.js";
-import { saveJournalEntry, deleteEntry } from "./JournalDataProvider.js";
-
+import { deleteEntryTags, saveEntryTag } from "./EntryTagProvider.js";
+import { saveJournalEntry, deleteEntry, getJournalEntries } from "./JournalDataProvider.js";
 import { EntryListComponent } from "./JournalEntryList.js";
-import { useMoods } from "./MoodsProvider.js";
-import { getTags, saveTag, useTags } from "./TagProvider.js";
+import { getTags, saveTag } from "./TagProvider.js";
 
 const contentTarget = document.querySelector(".journalEntryForm")
 const eventHub = document.querySelector(".container")
@@ -26,21 +24,19 @@ eventHub.addEventListener("click", clickEvent => {
                 moodId : document.querySelector("#journalMood").value
                 // Key/value pairs here
             }
-        
             let journalId
             let tagId
             let entryTag
             let inputTagObj
         saveJournalEntry(newJournalEntry).then((entry) => {
             journalId = entry.id}).then(getTags).then((tags) =>{
-                debugger 
                 for (const inputTag of inputTags) {
                     let foundTag = tags.find(tag => tag.subject === inputTag)
                     if(foundTag){
                         tagId = foundTag.id
                         entryTag = {
                             tagId : tagId,
-                            journalId : journalId
+                            entryId : journalId
                         }
                         saveEntryTag(entryTag)
                     }else{
@@ -50,27 +46,22 @@ eventHub.addEventListener("click", clickEvent => {
                         saveTag(inputTagObj).then((tag) => {
                             entryTag = {
                                 tagId : tag.id,
-                                journalId : journalId
+                                entryId : journalId
                             }
-                        }).then(saveEntryTag(entryTag))
+                        }).then(()=>saveEntryTag(entryTag))
                     }
                 }
-            })
-        
-        
-                
-            
+            })    
         EntryListComponent()
     }
-        // Change API state and application state
     }
 })
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("deleteNote--")) {
         const [prefix, id] = clickEvent.target.id.split("--")
-        deleteEntry(id).then(
-           () => {
-               EntryListComponent()
+        deleteEntry(id).then(deleteEntryTags(id)).then(getJournalEntries).then(() => {
+            
+            EntryListComponent()
            }
        )
     }

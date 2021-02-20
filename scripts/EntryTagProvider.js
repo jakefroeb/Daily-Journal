@@ -1,5 +1,5 @@
 let entryTags
-export const useEntryTags = () => tags.slice()
+// export const useEntryTags = () => entryTags.slice()
 
 export const getEntryTags = async () => {
     const response = await fetch("http://localhost:8088/entrytags")
@@ -15,4 +15,15 @@ export const saveEntryTag = async entryTag => {
         },
         body: JSON.stringify(entryTag)
     })
+}
+
+export const deleteEntryTags = entryId => {
+    let et = entryTags.find(tag => tag.journalId === entryId)
+    if(et){
+        for (const tag of et) {
+            return fetch(`http://localhost:8088/entries/${entryId}`, {
+                method: "DELETE"
+            })   
+        }
+    }
 }
